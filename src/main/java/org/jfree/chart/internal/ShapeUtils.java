@@ -157,7 +157,8 @@ public class ShapeUtils {
         PathIterator iterator2 = p2.getPathIterator(null);
         double[] d1 = new double[6];
         double[] d2 = new double[6];
-        while (!iterator1.isDone() || !iterator2.isDone()) {
+        boolean done = iterator1.isDone() && iterator2.isDone();
+        while (!done) {
             if (iterator1.isDone() != iterator2.isDone()) {
                 return false;
             }
@@ -171,6 +172,7 @@ public class ShapeUtils {
             }
             iterator1.next();
             iterator2.next();
+            done = iterator1.isDone() && iterator2.isDone();
         }
         return true;
     }
