@@ -158,10 +158,7 @@ public class ShapeUtils {
         double[] d1 = new double[6];
         double[] d2 = new double[6];
 
-        while (!iterator1.isDone() || !iterator2.isDone()) {
-            if (iterator1.isDone() != iterator2.isDone()) {
-                return false;
-            }
+        while (!iterator1.isDone() && !iterator2.isDone()) {
             int seg1 = iterator1.currentSegment(d1);
             int seg2 = iterator2.currentSegment(d2);
             if (seg1 != seg2) {
@@ -173,7 +170,7 @@ public class ShapeUtils {
             iterator1.next();
             iterator2.next();
         }
-        return true;
+        return iterator1.isDone() && iterator2.isDone();
     }
 
     /**
